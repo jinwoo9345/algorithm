@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class pb1 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int sum=0;
+		
+		int t = sc.nextInt();
+		String numbers = sc.next();
+		Sum sum1 = new Sum();
+
+		sum1.setNumber(t, numbers);
+		sum = sum1.getSum();
+		System.out.println(sum);
+	}
+
+}
+
+class Sum {
+	private String number;
+	private int[] numb;
+	private int sum=0;
+	public Sum() {
+
+	}
+
+	public void setNumber(int t, String number) {
+		numb = new int[t];
+		this.number = number;
+	}
+
+	public int getSum() {
+		this.separateNum(number);
+		for(int i =0;i<numb.length;i++) {
+			sum+=numb[i];
+		}
+		return sum;
+	}
+
+	private void separateNum(String number) {
+		int len = 1;
+		for (int i = 0; i < number.length(); i += len) {
+			int end =  Math.min(i+len,number.length());
+			numb[i/len]=Integer.parseInt(number.substring(i,end));
+		}
+	}
+}
