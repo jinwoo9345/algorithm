@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+public class pb2 {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		int n = sc.nextInt();
+		sc.nextLine();
+
+		char[] eAlpa = new char[n];
+
+		for (int i = 0; i < n; i++) {
+			String c = sc.nextLine();
+
+			int[] frequencyAlpa = new int[26];
+
+			for (int j = 0; j < 26; j++) {
+				frequencyAlpa[j] = 0;
+			}
+
+			for (int j = 0; j < c.length(); j++) {
+				if (c.charAt(j) == ' ')
+					continue;
+				int index = c.charAt(j) - 'a';
+				frequencyAlpa[index]++;
+			}
+
+			int maxIndex = 0;
+			int max = frequencyAlpa[0];
+			int maxCount = 0;
+
+			for (int j = 0; j < 26; j++) {
+
+				if (max == frequencyAlpa[j]) {
+					maxCount++;
+				}
+
+				if (max < frequencyAlpa[j]) {
+					maxCount = 1;
+					max = frequencyAlpa[j];
+					
+					maxIndex = j;
+
+				}
+
+			}
+			if (maxCount > 1) {
+				eAlpa[i] = '?';
+			}
+
+			else {
+				eAlpa[i] = (char) (maxIndex + 'a');
+			}
+		}
+		for (int i = 0; i < n; i++) {
+			System.out.println(eAlpa[i]);
+		}
+
+	}
+
+}
